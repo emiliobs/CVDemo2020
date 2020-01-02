@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CVDemo2020.ViewModel"
+             mc:Ignorable="d"
+             x:Class="CVDemo2020.View.ProductView"
+             Title="Demo on Collection View">
+    <ContentPage.BindingContext>
+        <vm:ProductViewModel></vm:ProductViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="5">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding Products}" SelectionMode="Multiple" x:Name="CVProducts">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="6"></GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>                       
+                        <Image Source="{Binding ImageUrl}" WidthRequest="90" HeightRequest="90" Grid.Column="0"></Image>
+
+                            <StackLayout Orientation="Vertical" Grid.Column="1">
+                                <Label Text="{Binding ProductName}" FontSize="Subtitle"></Label>
+                                <Label Text="{Binding Price}" FontSize="Medium"></Label>
+                            </StackLayout>
+                        
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
